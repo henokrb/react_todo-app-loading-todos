@@ -1,6 +1,7 @@
-import { Error } from '../types/Error';
+// import { ErrorType } from './types';
+import { ErrorType } from '../types/ErrorType';
 
-export function getMessage(error: Error) {
+export function getMessage(error: ErrorType) {
   switch (error.type) {
     case 'load':
       return 'Unable to load todos';

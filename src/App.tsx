@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import { UserWarning } from './UserWarning';
 import { getTodos, USER_ID } from './api/todos';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
 import { Todo } from './types/Todo';
-import TodoList from './components/Todo/TodoList';
-import { Error } from './types/Error';
-import ErrorMessage from './components/ErrorMessage/ErrorMessage';
+import TodoList from './components/Todos/TodoList';
+import ErrorMessage from './components/ErrorMessage';
+import { ErrorType } from './types/ErrorType';
+import { getFiltredTodoList } from './services/filterServices';
 import { Filter } from './types/Filter';
-import { getFiltredTodoList } from './services/filter';
 
 export const App: React.FC = () => {
   const [filter, setFilter] = useState<Filter>('FilterLinkAll');
@@ -18,7 +18,7 @@ export const App: React.FC = () => {
     getFiltredTodoList(filter, todos),
   );
 
-  const [error, setError] = useState<Error>({
+  const [error, setError] = useState<ErrorType>({
     isVisible: false,
     type: '',
   });
@@ -54,7 +54,6 @@ export const App: React.FC = () => {
       <h1 className="todoapp__title">todos</h1>
 
       <div className="todoapp__content">
-        {/* this button should have `active` class only if all todos are completed */}
         <Header />
 
         <TodoList todos={filtredTodos} />
@@ -64,11 +63,7 @@ export const App: React.FC = () => {
         )}
       </div>
 
-      {/* DON'T use conditional rendering to hide the notification */}
-      {/* Add the 'hidden' class to hide the message smoothly */}
-      <div>
-        <ErrorMessage error={error} />
-      </div>
+      <ErrorMessage error={error} />
     </div>
   );
 };

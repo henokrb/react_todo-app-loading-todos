@@ -1,9 +1,9 @@
 import classNames from 'classnames';
-import { Error } from '../../types/Error';
-import { getMessage } from '../../services/error';
+import { ErrorType } from '../../types/ErrorType';
+import { getMessage } from '../../services/errorServices';
 
 type ErrorProps = {
-  error: Error;
+  error: ErrorType;
 };
 
 const ErrorMessage: React.FC<ErrorProps> = ({ error }) => {
